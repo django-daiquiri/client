@@ -14,6 +14,6 @@ from daiquiri_client import Client
 
 client = Client('http://localhost:8000', '6f3d17e17e46c8e188b4c285ebb53a3fa3ce98c6')
 
-for profile in client.auth.fetch_profiles():
+for profile in client.auth.get_profiles():
     print(profile['user']['email'])
 ```
