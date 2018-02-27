@@ -8,3 +8,6 @@ class Auth():
 
     def get_groups(self):
         return self.client.get('/auth/api/groups/')
+
+    def get_group_map(self):
+        return {group['id']: group['name'] for group in self.get_groups()}
