@@ -11,3 +11,6 @@ class Auth():
 
     def get_group_map(self):
         return {group['id']: group['name'] for group in self.get_groups()}
+
+    def activate_profile(self, pk):
+        return self.client.put('/auth/api/profiles/%d/activate/' % pk, {})
