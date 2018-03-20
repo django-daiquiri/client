@@ -3,27 +3,27 @@ class Metadata(object):
     def __init__(self, client):
         self.client = client
 
-    # databases
+    # schemas
 
-    def get_databases(self, nested=False):
+    def get_schemas(self, nested=False):
         if nested:
-            return self.client.get('/metadata/api/databases/management/')
+            return self.client.get('/metadata/api/schemas/management/')
         else:
-            return self.client.get('/metadata/api/databases/')
+            return self.client.get('/metadata/api/schemas/')
 
-    def get_database(self, pk):
-        return self.client.get('/metadata/api/databases/%i/' % pk)
+    def get_schema(self, pk):
+        return self.client.get('/metadata/api/schemas/%i/' % pk)
 
-    def create_database(self, data):
-        return self.client.post('/metadata/api/databases/', data)
+    def create_schema(self, data):
+        return self.client.post('/metadata/api/schemas/', data)
 
-    def update_database(self, pk, data):
-        obj = self.get_database(pk)
+    def update_schema(self, pk, data):
+        obj = self.get_schema(pk)
         obj.update(data)
-        return self.client.put('/metadata/api/databases/%i/' % pk, obj)
+        return self.client.put('/metadata/api/schemas/%i/' % pk, obj)
 
-    def delete_database(self, pk):
-        return self.client.delete('/metadata/api/databases/%i/' % pk)
+    def delete_schema(self, pk):
+        return self.client.delete('/metadata/api/schemas/%i/' % pk)
 
     # tables
 
