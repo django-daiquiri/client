@@ -1,9 +1,9 @@
 import requests
 import simplejson
 
-from auth import Auth
-from metadata import Metadata
-from query import Query
+from .auth import Auth
+from .metadata import Metadata
+from .query import Query
 
 
 class Client(object):
