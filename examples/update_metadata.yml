@@ -1,0 +1,54 @@
+- name: daiquiri_data_obs
+  title: Observational data
+  description: Some observational data
+  long_description: Some more information about the data.
+  attribution: Please cite the following paper ...
+  order: 1
+  license: CC0
+  doi: 10.1000/xyz123
+  published: 2020-01-01
+  updated: 2018-01-01
+  access_level: PUBLIC
+  metadata_access_level: PUBLIC
+  creators:
+  - name: Anna Admin
+    first_name: Anna
+    last_name: Admin
+    orcid: https://orcid.org/0000-0001-2345-6789
+    affiliations: "Institute of applied Administration\nInstitute of theoretical Managament"
+  - name: Manni Manager
+    orcid: https://orcid.org/0000-0001-2345-6790
+    affiliations: Institute of theoretical Managament
+  contributors:
+  - name: Some computer guy
+
+  tables:
+  - name: stars
+    title: Stars
+    description: Some stars data
+    order: 1
+    license: CC0
+    doi: 10.1000/xyz123/123
+    published: 2020-01-01
+    updated: 2018-01-01
+    access_level: PUBLIC
+    metadata_access_level: PUBLIC
+    creators:
+    - name: Anna Admin
+      first_name: Anna
+      last_name: Admin
+      orcid: https://orcid.org/0000-0001-2345-6789
+      affiliations: "Institute of applied Administration\nInstitute of theoretical Managament"
+    - name: Manni Manager
+      orcid: https://orcid.org/0000-0001-2345-6790
+      affiliations: Institute of theoretical Managament
+
+    columns:
+    - name: id
+      ucd: meta.id;meta.main
+    - name: ra
+      ucd: pos.eq.ra;meta.main
+    - name: dec
+      ucd: pos.eq.dec;meta.main
+    - name: parallax
+      ucd: pos.parallax
