@@ -1,6 +1,6 @@
 import re
 
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 with open('daiquiri_client/__init__.py') as f:
     metadata = dict(re.findall(r'__(.*)__ = [\']([^\']*)[\']', f.read()))
@@ -17,8 +17,8 @@ setup(
     description=u'Daiquiri Client is a python library meant to be used with the Daiquiri Framework.',
     long_description=open('README.rst').read(),
     install_requires=[
-        'requests>=2.18.4',
-        'simplejson>= 3.11.1',
+        'requests>=2.7',
+        'simplejson>=3.17',
     ],
     classifiers=[],
     packages=find_packages(),

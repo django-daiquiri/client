@@ -1,3 +1,6 @@
+import datetime
+import json
+
 import requests
 import simplejson
 
@@ -7,12 +10,21 @@ from .query import Query
 from .tap import Tap
 
 
+class JSONEncoder(json.JSONEncoder):
+
+    def default(self, obj):
+        if isinstance(obj, datetime.date):
+            return obj.strftime('%Y-%m-%d')
+        else:
+            return super(JSONEncoder, self).default(obj)
+
+
 class Client(object):
 
     def __init__(self, base_url, token=None):
         self.base_url = base_url
 
-        self.headers = {}
+        self.headers = {'Content-Type': 'application/json'}
         if token:
             self.headers['Authorization'] = 'Token %s' % token
 
@@ -40,7 +52,7 @@ class Client(object):
             raise e
 
     def put(self, url, data):
-        response = requests.put(self.base_url + url, data, headers=self.headers)
+        response = requests.put(self.base_url + url, data=json.dumps(data, cls=JSONEncoder), headers=self.headers)
         try:
             response.raise_for_status()
             return response.json()
@@ -49,7 +61,7 @@ class Client(object):
             raise e
 
     def patch(self, url, data):
-        response = requests.patch(self.base_url + url, json=data, headers=self.headers)
+        response = requests.patch(self.base_url + url, data=json.dumps(data, cls=JSONEncoder), headers=self.headers)
 
         try:
             response.raise_for_status()
