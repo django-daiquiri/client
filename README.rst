@@ -3,11 +3,13 @@ Daiquiri Client
 
 Daiquiri Client is a python library meant to be used with the Daiquiri Framework.
 
-Daiquiri can be downloaded from `https://github.com/aipescience/django-daiquiri <https://github.com/aipescience/django-daiquiri>`_.
+Daiquiri can be downloaded from
+`https://github.com/django-daiquiri/daiquiri <https://github.com/django-daiquiri/daiquiri>`_.
 
-Daiquiri Client provides a set of functions which can be used to use the API of a Daiquiri powered website inside a script. The nessesarry HTTP requests are abstracted in a transparent way.
+Daiquiri Client provides a set of functions to use the API of a Daiquiri-powered
+website in a script. The necessary HTTP requests are abstracted in a transparent way.
 
-A script for getting the emails of all users using Daiquiri Client could look like this:
+For example, the following script gets the emails of all users:
 
 .. code:: python
 
