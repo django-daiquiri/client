@@ -1,0 +1,44 @@
+[build-system]
+requires = [
+    "setuptools",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-daiquiri-client"
+description = "Daiquiri Client is a python library meant to be used with the Daiquiri Framework."
+readme = "README.rst"
+dynamic = ["version"]
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "Jochen Klar", email = "jklar@aip.de"},
+]
+maintainers = [
+    {name = "Kirill Makan", email = "kmakan@aip.de"},
+]
+requires-python = ">=3.11"
+classifiers = [
+    'Development Status :: 4 - Beta', # 3 - Alpha, 4 - Beta, 5 - Production/Stable, 6 - Mature, 7 - Inactive (1 - Planning)
+    'Intended Audience :: Developers',
+    'Intended Audience :: System Administrators',
+    "Programming Language :: Python :: 3",
+    "Operating System :: Linux and OSX",
+]
+
+dependencies = [
+    "requests>=2.32",
+    "simplejson>=3.19",
+]
+
+[project.urls]
+Repository = "https://github.com/django-daiquiri/client"
+Issues = "https://github.com/django-daiquiri/client/issues"
+
+[tool.setuptools.dynamic]
+version = {attr = "daiquiri_client.__version__"}
+
+[tool.setuptools]
+packages = [
+    "daiquiri_client",
+]
+include-package-data = false
