@@ -16,7 +16,7 @@ authors = [
 maintainers = [
     {name = "Kirill Makan", email = "kmakan@aip.de"},
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.9"
 classifiers = [
     'Development Status :: 4 - Beta', # 3 - Alpha, 4 - Beta, 5 - Production/Stable, 6 - Mature, 7 - Inactive (1 - Planning)
     'Intended Audience :: Developers',
