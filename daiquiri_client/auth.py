@@ -1,5 +1,4 @@
-class Auth():
-
+class Auth:
     def __init__(self, client):
         self.client = client
 
@@ -16,4 +15,6 @@ class Auth():
         return self.client.put('/auth/api/profiles/%d/activate/' % pk, {})
 
     def update_profile_attributes(self, pk, attributes):
-        return self.client.patch('/auth/api/profiles/%d/' % pk, {'attributes': attributes})
+        return self.client.patch(
+            '/auth/api/profiles/%d/' % pk, {'attributes': attributes}
+        )
