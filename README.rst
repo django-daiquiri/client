@@ -30,43 +30,50 @@ Command Line Interface
 
 
 The CLI version of Daiquiri Client can be installed by cloning the 
-repository and running `pip install`
+repository and running ``pip install``
 
-```bash
-clone https://github.com/django-daiquiri/client.git
-cd client && pip install .[cli]
-```
 
-__Examples__:
+.. code:: bash
+
+    clone https://github.com/django-daiquiri/client.git
+    cd client && pip install .[cli]
+
+
+**Examples**:
 
 List all metadata
-```bash
-dqclient metadata ls -h <host> -t <token>
-```
-- `<host>`: Site url, for instance `https://gaia.aip.de`
-- `<token>`: API token that is provided by every Daqiuiri app in the user settings
+
+.. code:: bash
+
+    dqclient metadata ls -h <host> -t <token>
+
+- ``<host>``: Site url, for instance `https://gaia.aip.de`
+- ``<token>``: API token that is provided by every Daqiuiri app in the user settings
 
 
 
 Pull all metadata:
 
-```bash
-dqclient metadata pull -h <host> -t <token> -o <output_file>
-```
-- `<output_file>`: output yaml file, for instance `metadata.yaml`
+.. code:: bash
+
+    dqclient metadata pull -h <host> -t <token> -o <output_file>
+
+- ``<output_file>``: output yaml file, for instance `metadata.yaml`
 
 
 The updated metadata can be pushed back to the Daiquiri website with:
 
-```bash
-dqclient metadata push -h <host> -t <token> -i <input_file>
-```
+.. code:: bash
+
+    dqclient metadata push -h <host> -t <token> -i <input_file>
+
 
 
 It is possible to push/pull specific metadata by choosing the schemas or tables
 
-```bash
-dqclient metadata push -h <host> -t <token> -i <input_file> --schemas schemaname1,schemaname2 --tables tablename1
-```
+.. code:: bash
+
+    dqclient metadata push -h <host> -t <token> -i <input_file> --schemas schemaname1,schemaname2 --tables tablename1
+
 
 
