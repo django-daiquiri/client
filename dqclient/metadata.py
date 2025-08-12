@@ -38,20 +38,44 @@ class MetadataCLI:
         remote_metadata = client.metadata.get_schemas(nested=True)
         if verbose:
             print(f'Pushing metadata to {host}')
+
+        # check if the tables/schemas provided as arguments exist in the remote metadata
+        if len(schemas) > 0:
+            remote_schemas = [schema['name'] for schema in remote_metadata]
+            for schema in schemas:
+                if schema not in remote_schemas:
+                    print(f'The schema "{schema}" does not exist on the host!')
+                    return
         for remote_schema in remote_metadata:
             for local_schema in full_metadata:
+                if len(schemas) > 0 and remote_schema['name'] not in schemas:
+                    continue
                 if remote_schema['name'] == local_schema['name']:
                     print(f'Schema {local_schema["name"]}')
-                    client.metadata.update_schema(remote_schema['id'], local_schema)
+                    try:
+                        client.metadata.update_schema(remote_schema['id'], local_schema)
+                    except Exception as e:
+                        print(e)
+                        return
                     for remote_table in remote_schema['tables']:
                         for local_table in local_schema['tables']:
-                            if remote_table['name'] == local_table['name']:
+                            if len(tables) > 0 and remote_table['name'] not in tables:
+                                continue
+                            if remote_table['name'] in tables and remote_table['name'] == local_table['name']:
                                 print(f' - {local_table["name"]}')
-                                client.metadata.update_table(remote_table['id'], local_table)
+                                try:
+                                    client.metadata.update_table(remote_table['id'], local_table)
+                                except Exception as e:
+                                    print(e)
+                                    return
                                 for remote_column in remote_table['columns']:
                                     for local_column in local_table['columns']:
                                         if remote_column['name'] == local_column['name']:
-                                            client.metadata.update_column(remote_column['id'], local_column)
+                                            try:
+                                                client.metadata.update_column(remote_column['id'], local_column)
+                                            except Exception as e:
+                                                print(e)
+                                                return
         if verbose:
             print('Done!')
 
