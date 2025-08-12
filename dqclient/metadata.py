@@ -97,6 +97,13 @@ class MetadataCLI:
             print(e)
             return
         full_metadata = []
+        # check if the tables/schemas provided as arguments exist in the remote metadata
+        if len(schemas) > 0:
+            remote_schemas = [schema['name'] for schema in sorted_metadata]
+            for schema in schemas:
+                if schema not in remote_schemas:
+                    print(f'The schema "{schema}" does not exist on the host!')
+                    return
         if verbose:
             print(f'Pulling metadata from {host}')
         for remote_schema in sorted_metadata:
