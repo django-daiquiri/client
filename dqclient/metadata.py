@@ -38,7 +38,6 @@ class MetadataCLI:
         remote_metadata = client.metadata.get_schemas(nested=True)
         if verbose:
             print(f'Pushing metadata to {host}')
-
         # check if the tables/schemas provided as arguments exist in the remote metadata
         if len(schemas) > 0:
             remote_schemas = [schema['name'] for schema in remote_metadata]
@@ -61,7 +60,7 @@ class MetadataCLI:
                         for local_table in local_schema['tables']:
                             if len(tables) > 0 and remote_table['name'] not in tables:
                                 continue
-                            if remote_table['name'] in tables and remote_table['name'] == local_table['name']:
+                            if remote_table['name'] == local_table['name']:
                                 print(f' - {local_table["name"]}')
                                 try:
                                     client.metadata.update_table(remote_table['id'], local_table)
