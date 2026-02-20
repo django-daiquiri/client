@@ -16,12 +16,12 @@ for remote_schema in client.metadata.get_schemas(nested=True):
 
             for remote_table in remote_schema['tables']:
                 for local_table in local_schema['tables']:
-
                     if remote_table['name'] == local_table['name']:
                         client.metadata.update_table(remote_table['id'], local_table)
 
                         for remote_column in remote_table['columns']:
                             for local_column in local_table['columns']:
-
                                 if remote_column['name'] == local_column['name']:
-                                    client.metadata.update_column(remote_column['id'], local_column)
+                                    client.metadata.update_column(
+                                        remote_column['id'], local_column
+                                    )

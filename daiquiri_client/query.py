@@ -1,5 +1,4 @@
-class Query():
-
+class Query:
     def __init__(self, client):
         self.client = client
 
@@ -13,9 +12,9 @@ class Query():
         return self.client.post('/query/api/jobs/', data)
 
     def update_job(self, pk, data):
-        return self.client.put('/query/api/jobs/%s/' % pk, {
-            'table_name': data['table_name']
-        })
+        return self.client.put(
+            '/query/api/jobs/%s/' % pk, {'table_name': data['table_name']}
+        )
 
     def delete_job(self, pk):
         self.client.delete('/query/api/jobs/%s/' % pk)
