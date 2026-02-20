@@ -1,4 +1,4 @@
-from daiquiri_client import Client
+from daiquiri_client.client import Client
 import yaml
 
 
@@ -27,7 +27,7 @@ class MetadataCLI:
         with open(input, 'r') as fd:
             full_metadata = yaml.load(fd, yaml.Loader)
         try:
-            self._names_are_unique(full_metadata)
+            _ = self._names_are_unique(full_metadata)
         except ValueError as e:
             print('Some of the objects in the input file are not unique!')
             print('The script supports only unique schemas, tables and columns!')
@@ -52,6 +52,8 @@ class MetadataCLI:
                 if remote_schema['name'] == local_schema['name']:
                     print(f'Schema {local_schema["name"]}')
                     try:
+                        # clean up local metadata if originated from other tools
+                        local_schema.pop('id', None)
                         client.metadata.update_schema(remote_schema['id'], local_schema)
                     except Exception as e:
                         print(e)
@@ -63,6 +65,9 @@ class MetadataCLI:
                             if remote_table['name'] == local_table['name']:
                                 print(f' - {local_table["name"]}')
                                 try:
+                                    # clean up local metadata if originated from other tools
+                                    local_table.pop('id', None)
+                                    local_table.pop('schema', None)
                                     client.metadata.update_table(remote_table['id'], local_table)
                                 except Exception as e:
                                     print(e)
@@ -71,6 +76,9 @@ class MetadataCLI:
                                     for local_column in local_table['columns']:
                                         if remote_column['name'] == local_column['name']:
                                             try:
+                                                # clean up local metadata if originated from other tools
+                                                local_table.pop('id', None)
+                                                local_table.pop('table', None)
                                                 client.metadata.update_column(remote_column['id'], local_column)
                                             except Exception as e:
                                                 print(e)
@@ -90,7 +98,7 @@ class MetadataCLI:
         client = Client(host, token)
         sorted_metadata = client.metadata.get_schemas(nested=True)
         try:
-            self._names_are_unique(sorted_metadata)
+            _ = self._names_are_unique(sorted_metadata)
         except ValueError as e:
             print('Some of the objects are not unique! The script supports only unique schemas, tables and columns!')
             print(e)
