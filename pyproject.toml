@@ -19,10 +19,15 @@ classifiers = [
   'Operating System :: Linux and OSX',
 ]
 
-dependencies = ['requests>=2.32', 'simplejson>=3.19']
+dependencies = [
+  'requests>=2.32',
+  'simplejson>=3.19',
+  'click~=8.1.8',
+  'PyYAML~=6.0.2'
+]
 
 [project.optional-dependencies]
-cli = ['click~=8.1.8', 'PyYAML~=6.0.2']
+cli = []
 dev = ['ruff', 'twine']
 
 [tool.ruff]
