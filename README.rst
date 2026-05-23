@@ -36,7 +36,7 @@ repository and running ``pip install``
 .. code:: bash
 
     clone https://github.com/django-daiquiri/client.git
-    cd client && pip install .[cli]
+    cd client && pip install .
 
 
 **Examples**:
