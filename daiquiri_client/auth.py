@@ -12,7 +12,19 @@ class Auth:
         return {group['id']: group['name'] for group in self.get_groups()}
 
     def activate_profile(self, pk):
-        return self.client.put('/auth/api/profiles/%d/activate/' % pk, {})
+        return self.client.put('/auth/api/profiles/%d/enable/' % pk, {})
+
+    def disable_profile(self, pk):
+        return self.client.put('/auth/api/profiles/%d/disable/' % pk, {})
+
+    def reject_profile(self, pk):
+        return self.client.put('/auth/api/profiles/%d/reject/' % pk, {})
+
+    def approve_profile(self, pk):
+        return self.client.put('/auth/api/profiles/%d/approve/' % pk, {})
+
+    def confirm_profile(self, pk):
+        return self.client.put('/auth/api/profiles/%d/confirm/' % pk, {})
 
     def update_profile_attributes(self, pk, attributes):
         return self.client.patch(
